@@ -12,6 +12,15 @@ export async function getFragmentsbyUser(user) {
     }
     const data = await res.json();
     console.log("got the user data -", { data });
+
+    const fragmentsContainer = document.getElementById("fragmentsContainer");
+    fragmentsContainer.innerHTML = ""; 
+
+    data.fragments.forEach(fragment => {
+      const fragmentDiv = document.createElement("div");
+      fragmentDiv.textContent = fragment;
+      fragmentsContainer.appendChild(fragmentDiv);
+    });
   } catch (err) {
     console.error("Error getting data v1/fragments", { err });
   }

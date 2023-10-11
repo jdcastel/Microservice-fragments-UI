@@ -1,7 +1,7 @@
 // src/app.js
 
 import { Auth, getUser } from './auth';
-import { getUserFragments } from "./api";
+import { getFragmentsbyUser } from "./api";
 const API_URL = process.env.API_URL;
 async function init() {
   // Get our UI elements
@@ -47,7 +47,6 @@ const postTextBtn = document.querySelector("#post");
   postTextBtn.onclick = async () => {
     const formData = new FormData(document.getElementById("fragmentForm"));
     const fragmentText = formData.get("fragment");
-  
     try {
       const response = await fetch(`${API_URL}/v1/fragments`, {
         method: "POST",
@@ -57,17 +56,13 @@ const postTextBtn = document.querySelector("#post");
           "Content-Type": "text/plain",
         },
       });
-  
       const responseData = await response.json();
       console.log("Response from server:", responseData);
-  
-      // Aquí puedes hacer algo con la respuesta, por ejemplo, mostrarla en la consola o actualizar la interfaz de usuario según sea necesario.
-    } catch (error) {
+      } catch (error) {
       console.error("Error making POST request:", error);
     }
   };
-
-  getUserFragments(user);
+  getFragmentsbyUser(user);
 }
 
 // Wait for the DOM to be ready, then start the app

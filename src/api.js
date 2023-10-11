@@ -1,7 +1,6 @@
 const API_URL = process.env.API_URL;
 
-export async function getUserFragments(user) {
-  console.log("Requesting data from user -");
+export async function getFragmentsbyUser(user) {
   try {
     const res = await fetch(`${API_URL}/v1/fragments/`, {
       headers: {

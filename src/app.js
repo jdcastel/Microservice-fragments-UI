@@ -1,7 +1,6 @@
 // src/app.js
 
 import { Auth, getUser } from './auth';
-import { getFragmentsbyUser } from "./api";
 const API_URL = process.env.API_URL;
 async function init() {
   // Get our UI elements
@@ -46,28 +45,31 @@ const postTextBtn = document.querySelector("#post");
 
   postTextBtn.onclick = async () => {
     const formData = new FormData(document.getElementById("fragmentForm"));
-  const fragmentText = formData.get("fragment");
-  try {
-    const response = await fetch(`${API_URL}/v1/fragments`, {
-      method: "POST",
-      body: fragmentText,
-      headers: {
-        Authorization: `Bearer ${user.idToken}`,
-        "Content-Type": "text/plain",
-      },
-    });
-    const responseData = await response.json();
-    console.log("Response from server:", responseData);
-    if (response.ok) {
-      const fragmentContainer = document.createElement("div");
-      fragmentContainer.textContent = fragmentText;
-      document.body.appendChild(fragmentContainer);
+    const fragmentText = formData.get("fragment");
+    try {
+      console.log("idtoken", user.idToken);
+      console.log("apiulrl", API_URL);
+
+      const response = await fetch(`${API_URL}/v1/fragments/`, {
+        method: "POST",
+        body: fragmentText,
+        headers: {
+          Authorization: `Bearer ${user.idToken}`,
+          "Content-Type": "text/plain",
+        },
+      });
+      const responseData = await response.json();
+      console.log("Response from server:", responseData);
+      if (response.ok) {
+        const fragmentContainer = document.createElement("div");
+        fragmentContainer.textContent = fragmentText;
+        document.body.appendChild(fragmentContainer);
+      }
+    } catch (error) {
+      console.error("Error making POST request:", error);
     }
-  } catch (error) {
-    console.error("Error making POST request:", error);
-  }
-  };
-  getFragmentsbyUser(user);
+    };
+   // getFragmentsbyUser(user);
 }
 
 // Wait for the DOM to be ready, then start the app

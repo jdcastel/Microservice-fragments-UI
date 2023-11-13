@@ -85,6 +85,9 @@ async function init() {
       case '4':
         await get(`/v1/fragments/${fragmentId}/info`);
         break;
+      case '5':
+        await get('/v1/fragments/' + fragmentId + '.html');
+      break;
       default:
         console.error('Invalid option selected');
     }

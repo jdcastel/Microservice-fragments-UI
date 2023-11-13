@@ -4,20 +4,47 @@
     <meta charset="utf-8" />
     <title>Fragments UI</title>
     <link rel="stylesheet" href="https://unpkg.com/bamboo.css" />
+    <link rel="stylesheet" href="./styles.css" />
     <script type="module" src="./src/app.js"></script>
   </head>
   <body>
     <h1>Fragments UI</h1>
     <section>
-      <nav><button id="login">Login</button> <button id="logout">Logout</button></nav>
+      <nav>
+        <button id="login">Login</button>
+        <button id="logout">Logout</button>
+      </nav>
     </section>
     <section hidden id="user">
       <h2>Welcome back, <span class="username"></span>!</h2>
       <form id="fragmentForm">
-        <label for="fragment">Input text:</label>
-        <input type="text" id="fragment" name="fragment" /><br /><br />
-        <input type="button" value="Submit" id="post" />
-      </form>      
+        <label for="fragmentType">Select a fragment type:</label>
+        <select id="fragmentType" name="fragmentType">
+          <option value="text/plain">text/plain</option>
+          <option value="text/markdown">text/markdown</option>
+          <option value="text/html">text/html</option>
+          <option value="application/json">application/json</option>
+        </select>
+        <br />
+        <label for="fragmentData">Enter the data:</label>
+        <input id="fragmentData" name="fragmentData"></in>
+        <br /><br />
+        <input type="button" value="Submit POST" id="post" />
+      </form>
+      <br />
+      <label for="getOptions">Select a GET option:</label>
+      <select id="getOptions" name="getOptions">
+        <option value="1">Get</option>
+        <option value="2">Get with Expand</option>
+        <option value="3">Get by ID</option>
+        <option value="4">Get by ID Info</option>
+      </select>
+      <br /><br />
+      <label for="fragmentId">Enter the fragment ID:</label>
+      <input type="text" id="fragmentId" name="fragmentId">
+      <br />
+      <input type="button" value="Submit GET" id="submitGet" />
+      <br />
     </section>
   </body>
 </html>

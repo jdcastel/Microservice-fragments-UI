@@ -1,7 +1,7 @@
 # Build and serve fragments-ui with nginx
 # Stage 0: Build Stage
 # Use node version 16.14-alpine3.14 as the base version
-FROM node:16.14-alpine3.14@sha256:a93230d096610a42310869b16777623fbcacfd593e1b9956324470f760048758 AS base
+FROM node:20.10-alpine3.18 AS base
 
 # Metadata information
 LABEL maintainer="Juan Castelblanco <jdrodriguez-castelbl@myseneca.ca>" \
@@ -26,14 +26,13 @@ RUN npm install --no-package-lock
 
 # Stage 1: Production Stage
 # Use the same base image as the production stage
-FROM node:16.14-alpine3.14@sha256:a93230d096610a42310869b16777623fbcacfd593e1b9956324470f760048758 AS production
+FROM node:20.10-alpine3.18 AS production
 
 # Create the working directory
 WORKDIR /app
 
 # Copy files from the 'base' stage to the working directory
 COPY --from=base /app /app
-# Copy all of our source in
 COPY . .
 
 #Run the build in order to create

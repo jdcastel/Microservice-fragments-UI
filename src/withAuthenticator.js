@@ -1,3 +1,3 @@
 export default withAuthenticator(App, {
-    signUpAttributes: ['email', 'name'],
-  });
+  signUpAttributes: ['email', 'name'],
+});

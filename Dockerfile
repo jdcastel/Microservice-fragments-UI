@@ -21,6 +21,7 @@ COPY package*.json /app/
 # Install Node.js
 RUN npm install --no-package-lock
 
+
 ################################################
 
 # Stage 1: Production Stage

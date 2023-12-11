@@ -17,35 +17,101 @@
     </section>
     <section hidden id="user">
       <h2>Welcome back, <span class="username"></span>!</h2>
+      <br />
+
       <form id="fragmentForm">
         <label for="fragmentType">Select a fragment type:</label>
-        <select id="fragmentType" name="fragmentType">
+        <select id="fragmentType" name="fragmentType" style="width: 350px;">
           <option value="text/plain">text/plain</option>
           <option value="text/markdown">text/markdown</option>
           <option value="text/html">text/html</option>
           <option value="application/json">application/json</option>
+          <option value="image/png">image/png</option>
+          <option value="image/jpeg">image/jpeg</option>
+          <option value="image/webp">image/webp</option>
+          <option value="image/gif">image/gif</option>
         </select>
+        <div id="divImage" hidden>
+          <label for="fragmentImage">Enter the Image:</label>
+          <input id="fragmentImage" name="fragmentImage" style="width: 350px;" type="file" multiple></input>
+        </div>
+        <div id="divData">
+          <label for="fragmentData">Enter the data:</label>
+          <input id="fragmentData" name="fragmentData" style="width: 350px;"></input>
+        </div>
         <br />
-        <label for="fragmentData">Enter the data:</label>
-        <input id="fragmentData" name="fragmentData"></in>
-        <br /><br />
         <input type="button" value="Submit POST" id="post" />
       </form>
-      <br />
-      <label for="getOptions">Select a GET option:</label>
-      <select id="getOptions" name="getOptions">
-        <option value="1">Get</option>
-        <option value="2">Get with Expand</option>
-        <option value="3">Get by ID</option>
-        <option value="4">Get by ID Info</option>
-        <option value="4">Get by ID txt to html</option>
-      </select>
-      <br /><br />
-      <label for="fragmentId">Enter the fragment ID:</label>
-      <input type="text" id="fragmentId" name="fragmentId">
-      <br />
-      <input type="button" value="Submit GET" id="submitGet" />
-      <br />
+
+
+      <section class="options">
+        <label for="getOptions">Select a GET option:</label>
+        <select id="getOptions" name="getOptions" style="width: 350px;">
+          <option value="1">Get with Expand</option>
+          <option value="2">Get</option>
+          <option value="3">Get by ID</option>
+          <option value="4">Get by ID Info</option>
+        </select>
+        <div id="divFragmentId" hidden>
+          <label for="fragmentId">Enter the fragment ID:</label>
+          <input type="text" id="fragmentId" name="fragmentId" style="width: 350px;">
+        </div>
+        <input type="button" value="Submit GET" id="submitGet" />
+      </section>
+      <table id="tblFragment" class="table table-borderless table-striped table-earning display" style="width: 100%; display: none;">
+        <thead>
+          <tr>
+            <th>Action</th>
+            <th>Id</th>
+            <th>Owner Id</th>
+            <th>Type</th>
+            <th>Created</th>
+            <th>Updated</th>
+            <th>Size</th>
+          </tr>
+        </thead>
+        <tbody id="fragmentBody"></tbody>
+      </table>
+      <table id="tblFragmentIds" class="table table-borderless table-striped table-earning" style="width: 100%; display: none;">
+        <thead>
+          <tr>
+            <th>Id</th>
+          </tr>
+        </thead>
+        <tbody id="fragmentBodyIds"></tbody>
+      </table>
+      <div id="fragmentContainer">
+
+      </div>
+      <img id="imageFragment">
     </section>
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <label for="fragmentIdData">Id:</label>
+        <input id="fragmentIdData" name="fragmentIdData" style="width: 350px;" disabled></input>
+        <label for="fragmentTypeData">Type:</label>
+        <input id="fragmentTypeData" name="fragmentTypeData" style="width: 350px;" disabled></input>
+        <div id="divEditFragment">
+          <div id="divEditImage">
+            <label for="fragmentEditImage">Enter the Image:</label>
+            <input id="fragmentEditImage" name="fragmentEditImage" style="width: 350px;" type="file" multiple></input>
+          </div>
+          <div id="divEditData">
+            <label for="fragmentEditData">Enter the data:</label>
+            <input id="fragmentEditData" name="fragmentEditData" style="width: 350px;"></input>
+          </div>
+          <input type="button" value="Edit" id="EditFragment" />
+        </div>
+        <div id="divConvertFragment">
+          <label for="selectConvert">Select new type:</label>
+          <select id="selectConvert"></select>
+          <input type="button" value="Convert" id="ConvertFragment" />
+        </div>
+      </div>
+    
+    </div>
   </body>
 </html>
